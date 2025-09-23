@@ -2,183 +2,223 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Daygo Store Games</title>
+  <title>Tienda Gamer DR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
-      background: #121212;
-      color: #f1f1f1;
+      background: linear-gradient(135deg, #0a0c1b 0%, #16213e 100%);
+      color: #e5eaf5;
+      min-height: 100vh;
     }
     header {
-      background: #1b2330;
-      padding: 1.5rem 1rem 1rem 1rem;
+      background: #101223;
+      padding: 2.2rem 2rem 1.4rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 8px #0005;
+      box-shadow: 0 2px 12px #0008;
     }
     header h1 {
-      color: #6dd5ed;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.6rem;
+      color: #4fc3f7;
+      letter-spacing: 2.5px;
       margin: 0;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-      text-shadow: 0 3px 14px #222, 0 2px 8px #6dd5ed33;
-    }
-    .search-box {
-      background: #181e29;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      max-width: 340px;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 2px 8px #0003;
-    }
-    .search-box input {
-      width: 100%;
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      outline: none;
-      background: #222b3b;
-      color: #f1f1f1;
-      margin-right: 0.6rem;
+      text-shadow: 0 0 22px #0ff, 0 2px 8px #001b44;
+      background: linear-gradient(90deg, #4fc3f7 60%, #1565c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .btn {
-      padding: 0.5rem 1.1rem;
-      background: linear-gradient(90deg, #6dd5ed 70%, #2193b0 100%);
+      margin-top: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(90deg, #152a5f 60%, #283e66 100%);
       border: none;
-      border-radius: 4px;
-      color: #212c3d;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05rem;
       cursor: pointer;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: background 0.2s, color 0.2s;
-      margin: 0.2rem 0.3rem 0.2rem 0;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 10px #283e6622;
+      outline: none;
     }
     .btn:hover {
-      background: linear-gradient(90deg, #2193b0 70%, #6dd5ed 100%);
-      color: white;
+      background: linear-gradient(90deg, #1a3b72 60%, #4fc3f7 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.06);
+      box-shadow: 0 4px 24px #4fc3f744;
     }
     .catalogo {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.3rem;
-      padding: 1.2rem;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.2rem;
+      padding: 2rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
     .juego {
-      background: #222b3b;
-      border-radius: 10px;
-      padding: 1rem;
+      background: #151a2e;
+      border-radius: 16px;
+      padding: 1.3rem;
       text-align: center;
-      box-shadow: 0 2px 10px #0004;
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px #0007;
+      transition: transform 0.17s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      border: 1.5px solid #2e3c5d;
     }
     .juego:hover {
       transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 6px 20px #6dd5ed22;
+      box-shadow: 0 8px 32px #4fc3f722;
+      border-color: #4fc3f7;
     }
     .juego img {
       width: 100%;
-      height: 190px;
+      height: 220px;
       object-fit: contain;
-      border-radius: 6px;
-      background: #181e29;
-      margin-bottom: 0.5rem;
-      border: 2px solid #181e29;
-      box-shadow: 0 1px 8px #6dd5ed22;
+      background: #0a0c1b;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      border: 2.5px solid #232c47;
+      box-shadow: 0 2px 12px #4fc3f722;
+      padding: 8px;
+      transition: border 0.18s;
+    }
+    .juego:hover img {
+      border-color: #4fc3f7;
+      background: #101223;
     }
     .juego h3 {
       margin: 0.5rem 0 0.2rem 0;
-      color: #6dd5ed;
-      font-size: 1.15rem;
+      color: #4fc3f7;
+      font-size: 1.32rem;
+      letter-spacing: 1px;
     }
     .juego p {
-      margin: 0.15rem 0 0.5rem 0;
+      margin: 0.2rem 0 0.6rem 0;
     }
-    #detalle, #carrito {
-      padding: 1.2rem;
-      background: #181e29;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: 1.5rem auto;
-      box-shadow: 0 4px 28px #6dd5ed11;
+    #detalle, #carrito, #factura {
+      padding: 2rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #19213a;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #4fc3f722;
       display: none;
+      animation: fadeIn 0.5s;
     }
     #detalle img {
-      max-width: 320px;
-      border-radius: 8px;
+      max-width: 330px;
+      border-radius: 11px;
       margin-bottom: 1rem;
+      box-shadow: 0 2px 12px #4fc3f722;
+      border: 2px solid #4fc3f7;
+      background: #101223;
       display: block;
-      background: #121212;
       margin-left: auto;
       margin-right: auto;
     }
-    #detalle video, #detalle iframe {
-      width: 100%;
-      max-width: 420px;
-      height: 240px;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      background: #000;
-      box-shadow: 0 1px 8px #6dd5ed33;
-      border: 2px solid #222b3b;
+    #carrito h2, #factura h2 {
+      color: #4fc3f7;
+      text-align: center;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1.2px;
     }
     #carrito ul {
       list-style: none;
       padding: 0;
-      margin-bottom: 1rem;
+      margin: 1.1rem 0;
+      max-height: 265px;
+      overflow-y: auto;
     }
     #carrito li {
-      background: #222b3b;
-      padding: 0.7rem;
+      background: #1e2540;
+      padding: 0.9rem 1.1rem;
       margin: 0.5rem 0;
-      border-radius: 5px;
-      font-size: 1.03rem;
+      border-radius: 7px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 10px #4fc3f711;
+      border: 1.3px solid #283e66;
+      font-size: 1.04rem;
     }
     .eliminar {
-      background: #ff4f5a;
+      background: #e57373;
       color: #fff;
       border: none;
       border-radius: 4px;
-      padding: 0.2rem 0.7rem;
+      padding: 0.3rem 0.7rem;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.96rem;
       margin-left: 1rem;
-      transition: background 0.16s;
+      transition: background 0.2s;
     }
     .eliminar:hover {
       background: #b71c1c;
     }
-    @media (max-width: 600px) {
-      .catalogo { grid-template-columns: 1fr; padding: 0.5rem;}
-      #detalle, #carrito { padding: 0.6rem; }
-      .search-box { max-width: 98%; }
+    #carrito p, #carrito strong {
+      font-size: 1.18rem;
+    }
+    .form-compra {
+      margin: 1.2rem 0 0.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-compra input {
+      padding: 0.7rem;
+      border-radius: 6px;
+      border: 1.2px solid #2e3c5d;
+      background: #141a2e;
+      color: #fff;
+      font-size: 1.08rem;
+      outline: none;
+      transition: border 0.17s;
+    }
+    .form-compra input:focus {
+      border-color: #4fc3f7;
+    }
+    #factura {
+      text-align: left;
+      color: #e5eaf5;
+    }
+    #factura .resumen {
+      background: #111726;
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-top: 1.3rem;
+      box-shadow: 0 2px 14px #4fc3f722;
+      font-size: 1.07rem;
+      border: 1.5px solid #283e66;
+    }
+    #factura strong {
+      color: #4fc3f7;
+      font-size: 1.15rem;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.96);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    @media (max-width: 700px) {
+      .catalogo {
+        grid-template-columns: 1fr;
+      }
+      #detalle, #carrito, #factura {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Daygo Store Games 🎮</h1>
+  <h1>Tienda Gamer DR 🎮</h1>
   <button class="btn" onclick="mostrarCarrito()">🛒 Carrito</button>
 </header>
-
-<div class="search-box">
-  <input type="text" id="buscador" placeholder="Buscar juego..." oninput="filtrarCatalogo()" />
-</div>
 
 <!-- 📌 CATÁLOGO -->
 <section id="catalogo" class="catalogo"></section>
@@ -192,34 +232,42 @@
   <ul id="listaCarrito"></ul>
   <p><strong>Total: $<span id="total">0</span></strong></p>
   <button class="btn" onclick="volverCatalogo()">Seguir viendo</button>
+  <button class="btn" onclick="mostrarFormularioCompra()" id="btnCompra" style="margin-left:1rem">Confirmar compra</button>
+  <form class="form-compra" id="formCompra" style="display:none" onsubmit="return procesarCompra(event)">
+    <input type="text" id="nombre" placeholder="Nombre completo" required>
+    <input type="number" id="edad" placeholder="Edad" min="1" max="120" required>
+    <input type="tel" id="celular" placeholder="Celular" pattern="[0-9]{7,15}" required>
+    <input type="text" id="nit" placeholder="NIT (opcional)">
+    <button class="btn" type="submit">Finalizar compra</button>
+  </form>
 </section>
 
+<!-- 📌 FACTURA -->
+<section id="factura"></section>
+
 <script>
-  // LISTA DE JUEGOS (puedes agregar más, cambia el 'video' por un link de YouTube/embed o mp4)
+  // 📌 LISTA DE JUEGOS (puedes agregar más)
   const juegos = [
     {
       id: 1,
       titulo: "The Legend of Zelda",
-      precio: 59,
+      precio: 149.99,
       imagen: "imagenes/zelda.jpg",
-      descripcion: "Un juego de aventura y exploración en un mundo mágico.",
-      video: "https://www.youtube.com/embed/1rPxiXXxftE"
+      descripcion: "Un juego de aventura y exploración en un mundo mágico."
     },
     {
       id: 2,
       titulo: "FIFA 25",
       precio: 49,
       imagen: "imagenes/fifa.jpg",
-      descripcion: "El mejor simulador de fútbol con gráficos realistas.",
-      video: "https://www.youtube.com/embed/5j8H0yFV8iA"
+      descripcion: "El mejor simulador de fútbol con gráficos realistas."
     },
     {
       id: 3,
       titulo: "Call of Duty",
-      precio: 69,
+      precio: 200,
       imagen: "imagenes/cod.jpg",
-      descripcion: "Juego de disparos en primera persona lleno de acción.",
-      video: "https://www.youtube.com/embed/QjU9Wq-BcK4"
+      descripcion: "Juego de disparos en primera persona lleno de acción."
     }
   ];
 
@@ -228,9 +276,10 @@
   const carrito = document.getElementById("carrito");
   const listaCarrito = document.getElementById("listaCarrito");
   const total = document.getElementById("total");
-  const buscador = document.getElementById("buscador");
+  const btnCompra = document.getElementById("btnCompra");
+  const formCompra = document.getElementById("formCompra");
+  const factura = document.getElementById("factura");
 
-  // --- Carrito localStorage ---
   function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carritoItems));
   }
@@ -240,27 +289,19 @@
   }
   let carritoItems = cargarCarrito();
 
-  // Catalogo filtrado
-  let catalogoFiltrado = [...juegos];
-
-  // Mostrar catálogo
   function mostrarCatalogo() {
     catalogo.style.display = "grid";
     detalle.style.display = "none";
     carrito.style.display = "none";
-
+    factura.style.display = "none";
     catalogo.innerHTML = "";
-    if (catalogoFiltrado.length === 0) {
-      catalogo.innerHTML = "<p>No se encontraron juegos.</p>";
-      return;
-    }
-    catalogoFiltrado.forEach(juego => {
+    juegos.forEach(juego => {
       const card = document.createElement("div");
       card.classList.add("juego");
       card.innerHTML = `
         <img src="${juego.imagen}" alt="${juego.titulo}">
         <h3>${juego.titulo}</h3>
-        <p>$${juego.precio}</p>
+        <p><b>$${juego.precio}</b></p>
         <button class="btn" onclick="verDetalle(${juego.id})">Ver Detalle</button>
         <button class="btn" onclick="agregarCarrito(${juego.id})">Agregar 🛒</button>
       `;
@@ -268,49 +309,22 @@
     });
   }
 
-  // Filtrar catálogo por buscador
-  function filtrarCatalogo() {
-    const query = buscador.value.trim().toLowerCase();
-    if (query === "") {
-      catalogoFiltrado = [...juegos];
-    } else {
-      catalogoFiltrado = juegos.filter(juego =>
-        juego.titulo.toLowerCase().includes(query)
-      );
-    }
-    mostrarCatalogo();
-  }
-
-  // Mostrar detalle con video
   function verDetalle(id) {
     const juego = juegos.find(j => j.id === id);
     catalogo.style.display = "none";
     carrito.style.display = "none";
+    factura.style.display = "none";
     detalle.style.display = "block";
-
-    let videoHTML = "";
-    if (juego.video) {
-      // Si es un link de YouTube, usar iframe
-      if (juego.video.includes("youtube")) {
-        videoHTML = `<iframe src="${juego.video}" frameborder="0" allowfullscreen></iframe>`;
-      } else {
-        // Si es mp4, usar <video>
-        videoHTML = `<video src="${juego.video}" controls></video>`;
-      }
-    }
-
     detalle.innerHTML = `
       <h2>${juego.titulo}</h2>
       <img src="${juego.imagen}" alt="${juego.titulo}">
       <p>${juego.descripcion}</p>
-      ${videoHTML}
       <p><strong>Precio: $${juego.precio}</strong></p>
       <button class="btn" onclick="agregarCarrito(${juego.id})">Agregar al carrito</button>
       <button class="btn" onclick="mostrarCatalogo()">Volver</button>
     `;
   }
 
-  // Agregar al carrito
   function agregarCarrito(id) {
     const juego = juegos.find(j => j.id === id);
     carritoItems.push(juego);
@@ -318,12 +332,13 @@
     alert(juego.titulo + " agregado al carrito 🛒");
   }
 
-  // Mostrar carrito
   function mostrarCarrito() {
     catalogo.style.display = "none";
     detalle.style.display = "none";
+    factura.style.display = "none";
     carrito.style.display = "block";
-
+    formCompra.style.display = "none";
+    btnCompra.style.display = "inline-block";
     listaCarrito.innerHTML = "";
     let totalCompra = 0;
     carritoItems.forEach((juego, idx) => {
@@ -335,10 +350,12 @@
       listaCarrito.appendChild(li);
       totalCompra += juego.precio;
     });
-    total.textContent = totalCompra;
+    total.textContent = totalCompra.toFixed(2);
+    if(carritoItems.length === 0) {
+      btnCompra.style.display = "none";
+    }
   }
 
-  // Eliminar del carrito
   function eliminarDelCarrito(index) {
     carritoItems.splice(index, 1);
     guardarCarrito();
@@ -349,9 +366,59 @@
     mostrarCatalogo();
   }
 
-  // Inicialización
+  function mostrarFormularioCompra() {
+    if(carritoItems.length === 0) return;
+    btnCompra.style.display = "none";
+    formCompra.style.display = "flex";
+    factura.style.display = "none";
+  }
+
+  function procesarCompra(event) {
+    event.preventDefault();
+    // Obtener datos del formulario
+    const nombre = document.getElementById("nombre").value.trim();
+    const edad = document.getElementById("edad").value.trim();
+    const celular = document.getElementById("celular").value.trim();
+    const nit = document.getElementById("nit").value.trim();
+    // Calcular total
+    let totalCompra = 0;
+    carritoItems.forEach(juego => totalCompra += juego.precio);
+    // Crear resumen de productos
+    let productos = '';
+    carritoItems.forEach(juego => {
+      productos += `<li>${juego.titulo} - $${juego.precio}</li>`;
+    });
+    // Mostrar factura
+    factura.innerHTML = `
+      <h2>Factura de compra</h2>
+      <div class="resumen">
+        <strong>Nombre:</strong> ${nombre} <br>
+        <strong>Edad:</strong> ${edad} <br>
+        <strong>Celular:</strong> ${celular} <br>
+        ${nit ? `<strong>NIT:</strong> ${nit} <br>` : ""}
+        <br>
+        <strong>Productos:</strong>
+        <ul>${productos}</ul>
+        <strong>Total pagado:</strong> $${totalCompra.toFixed(2)}
+      </div>
+      <button class="btn" onclick="finalizarCompra()">Finalizar</button>
+    `;
+    factura.style.display = "block";
+    carrito.style.display = "none";
+    // Limpiar carrito y formulario
+    carritoItems = [];
+    guardarCarrito();
+    formCompra.reset();
+    formCompra.style.display = "none";
+  }
+
+  function finalizarCompra() {
+    factura.style.display = "none";
+    mostrarCatalogo();
+  }
+
+  // Inicializamos mostrando el catálogo
   mostrarCatalogo();
 </script>
-
 </body>
 </html>
