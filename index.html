@@ -5,68 +5,156 @@
   <title>Tienda de Videojuegos</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
-      background: #121212;
+      background: linear-gradient(135deg, #232526, #1c92d2 100%);
       color: #f1f1f1;
+      min-height: 100vh;
     }
     header {
-      background: #1f1f1f;
-      padding: 1rem;
+      background: #20232a;
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     header h1 {
-      color: #00ffcc;
+      color: #00ffd0;
       margin: 0;
-    }
-    .catalogo {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .juego {
-      background: #1e1e1e;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-    }
-    .juego img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 6px;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-size: 2rem;
+      text-shadow: 0 2px 8px #00ffd033;
     }
     .btn {
       margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #00ffcc;
+      padding: 0.5rem 1.2rem;
+      background: linear-gradient(90deg, #00ffd0 60%, #0099ff 100%);
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
+      color: #222;
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px #00ffd022;
     }
     .btn:hover {
-      background: #00ccaa;
+      background: linear-gradient(90deg, #0099ff 60%, #00ffd0 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.05);
+    }
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .juego {
+      background: #20232a;
+      border-radius: 14px;
+      padding: 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 24px #0006;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .juego:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 30px #00ffd044;
+    }
+    .juego img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px #0099ff22;
+      margin-bottom: 0.8rem;
+      border: 2px solid #0099ff44;
+      background: #222;
+    }
+    .juego h3 {
+      margin: 0.5rem 0 0.2rem 0;
+      color: #00ffd0;
+      font-size: 1.3rem;
+    }
+    .juego p {
+      margin: 0.2rem 0 0.5rem 0;
     }
     #detalle, #carrito {
-      padding: 1rem;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #23293c;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px #0099ff22;
       display: none;
+      animation: fadeIn 0.5s;
     }
     #detalle img {
       max-width: 300px;
-      border-radius: 6px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 12px #00ffd022;
+      border: 2px solid #00ffd066;
+      background: #222;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #carrito h2 {
+      color: #00ffd0;
+      text-align: center;
     }
     #carrito ul {
       list-style: none;
       padding: 0;
+      margin: 1rem 0;
+      max-height: 260px;
+      overflow-y: auto;
     }
     #carrito li {
-      background: #1e1e1e;
-      padding: 0.5rem;
+      background: #1e1e2e;
+      padding: 0.8rem 1rem;
       margin: 0.5rem 0;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px #00ffd011;
+    }
+    .eliminar {
+      background: #ff4f5a;
+      color: #fff;
+      border: none;
       border-radius: 4px;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-left: 1rem;
+      transition: background 0.2s;
+    }
+    .eliminar:hover {
+      background: #d10018;
+    }
+    #carrito p, #carrito strong {
+      font-size: 1.2rem;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.96);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    @media (max-width: 700px) {
+      .catalogo {
+        grid-template-columns: 1fr;
+      }
+      #detalle, #carrito {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -98,7 +186,7 @@
       id: 1,
       titulo: "The Legend of Zelda",
       precio: 149.99,
-      imagen: "imagenes/zelda.jpg", // <<-- SUBE AQUÍ TU IMAGEN
+      imagen: "imagenes/zelda.jpg",
       descripcion: "Un juego de aventura y exploración en un mundo mágico."
     },
     {
@@ -123,7 +211,16 @@
   const listaCarrito = document.getElementById("listaCarrito");
   const total = document.getElementById("total");
 
-  let carritoItems = [];
+  // --- UTILIDADES PARA LOCALSTORAGE ---
+  function guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(carritoItems));
+  }
+  function cargarCarrito() {
+    const datos = localStorage.getItem('carrito');
+    return datos ? JSON.parse(datos) : [];
+  }
+
+  let carritoItems = cargarCarrito();
 
   // 📌 MOSTRAR CATALOGO
   function mostrarCatalogo() {
@@ -138,8 +235,9 @@
       card.innerHTML = `
         <img src="${juego.imagen}" alt="${juego.titulo}">
         <h3>${juego.titulo}</h3>
-        <p>$${juego.precio}</p>
+        <p><b>$${juego.precio}</b></p>
         <button class="btn" onclick="verDetalle(${juego.id})">Ver Detalle</button>
+        <button class="btn" onclick="agregarCarrito(${juego.id})">Agregar 🛒</button>
       `;
       catalogo.appendChild(card);
     });
@@ -166,6 +264,7 @@
   function agregarCarrito(id) {
     const juego = juegos.find(j => j.id === id);
     carritoItems.push(juego);
+    guardarCarrito();
     alert(juego.titulo + " agregado al carrito 🛒");
   }
 
@@ -177,13 +276,23 @@
 
     listaCarrito.innerHTML = "";
     let totalCompra = 0;
-    carritoItems.forEach(juego => {
+    carritoItems.forEach((juego, idx) => {
       const li = document.createElement("li");
-      li.textContent = `${juego.titulo} - $${juego.precio}`;
+      li.innerHTML = `
+        <span>${juego.titulo} - $${juego.precio}</span>
+        <button class="eliminar" onclick="eliminarDelCarrito(${idx})">✖</button>
+      `;
       listaCarrito.appendChild(li);
       totalCompra += juego.precio;
     });
-    total.textContent = totalCompra;
+    total.textContent = totalCompra.toFixed(2);
+  }
+
+  // 📌 ELIMINAR DEL CARRITO
+  function eliminarDelCarrito(index) {
+    carritoItems.splice(index, 1);
+    guardarCarrito();
+    mostrarCarrito();
   }
 
   // 📌 VOLVER AL CATALOGO
