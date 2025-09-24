@@ -2,60 +2,63 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Daygo Store Games</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <title>Gamer Vault Store</title>
+  <!-- Fuentes gamer -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Share Tech Mono', 'Segoe UI', Arial, sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #0a0c1b 0%, #16213e 100%);
-      color: #e5eaf5;
+      background: linear-gradient(120deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      color: #F5FAFF;
       min-height: 100vh;
+      background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
     }
     header {
-      background: #101223;
-      padding: 2.2rem 2rem 1.4rem 2rem;
+      background: #161b2d;
+      padding: 2rem 2rem 1.2rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 12px #0008;
+      box-shadow: 0 2px 20px #000a;
     }
     header h1 {
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 2.6rem;
-      color: #4fc3f7;
+      font-family: 'Orbitron', 'Share Tech Mono', Arial, sans-serif;
+      font-size: 2.8rem;
+      color: #52e2f9;
       letter-spacing: 2.5px;
       margin: 0;
       text-shadow: 0 0 22px #0ff, 0 2px 8px #001b44;
-      background: linear-gradient(90deg, #4fc3f7 60%, #1565c0 100%);
+      background: linear-gradient(90deg, #52e2f9 60%, #1565c0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      user-select: none;
     }
     .btn {
-      margin-top: 0.5rem;
-      padding: 0.7rem 1.5rem;
-      background: linear-gradient(90deg, #152a5f 60%, #283e66 100%);
+      padding: 0.7rem 1.6rem;
+      background: linear-gradient(90deg, #00ffcc 60%, #0099ff 100%);
       border: none;
-      border-radius: 6px;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.05rem;
+      border-radius: 7px;
+      color: #242424;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 2px 10px #283e6622;
+      transition: background 0.2s, transform 0.2s, color 0.15s;
+      box-shadow: 0 2px 12px #00ffd033;
       outline: none;
     }
     .btn:hover {
-      background: linear-gradient(90deg, #1a3b72 60%, #4fc3f7 100%);
+      background: linear-gradient(90deg, #0099ff 60%, #00ffcc 100%);
       color: #fff;
       transform: translateY(-2px) scale(1.06);
-      box-shadow: 0 4px 24px #4fc3f744;
+      box-shadow: 0 4px 24px #00ffd044;
     }
     .search-box {
       background: #181e29;
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      margin: 1rem auto 0.5rem auto;
+      margin: 1.2rem auto 0.5rem auto;
       max-width: 340px;
       display: flex;
       align-items: center;
@@ -66,76 +69,123 @@
       padding: 0.5rem 0.8rem;
       border-radius: 6px;
       border: none;
-      font-size: 1rem;
+      font-size: 1.1rem;
       outline: none;
       background: #222b3b;
       color: #f1f1f1;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
     }
     .catalogo {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2.2rem;
-      padding: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      padding: 2.5rem 2rem;
       max-width: 1200px;
       margin: 0 auto;
     }
     .juego {
-      background: #151a2e;
-      border-radius: 16px;
-      padding: 1.3rem;
+      background: #181d2f;
+      border-radius: 18px;
+      box-shadow: 0 4px 28px #00ffd011, 0 2px 24px #000b;
+      padding: 1.1rem 1.1rem 1.8rem 1.1rem;
       text-align: center;
-      box-shadow: 0 4px 20px #0007;
-      transition: transform 0.17s, box-shadow 0.2s;
       position: relative;
       overflow: hidden;
-      border: 1.5px solid #2e3c5d;
+      border: 2.5px solid #252c44;
+      cursor: pointer;
+      transition: transform 0.19s, box-shadow 0.2s, border 0.18s;
     }
     .juego:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 8px 32px #4fc3f722;
-      border-color: #4fc3f7;
+      transform: scale(1.03) translateY(-4px);
+      border-color: #52e2f9;
+      box-shadow: 0 8px 40px #52e2f933, 0 2px 32px #001b;
     }
     .juego img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: contain;
-      background: #0a0c1b;
-      border-radius: 10px;
-      margin-bottom: 0.8rem;
-      border: 2.5px solid #232c47;
-      box-shadow: 0 2px 12px #4fc3f722;
+      background: #141a24;
+      border-radius: 12px;
+      margin-bottom: 1.1rem;
+      border: 2px solid #252c44;
+      box-shadow: 0 2px 14px #00ffd022;
       padding: 8px;
-      transition: border 0.18s;
+      transition: border 0.18s, background 0.17s;
+      pointer-events: none;
+      user-select: none;
     }
-    .juego:hover img {
-      border-color: #4fc3f7;
-      background: #101223;
+    .juego .precio-sticker {
+      display: inline-block;
+      background: linear-gradient(90deg, #00ffcc 60%, #0099ff 100%);
+      color: #181d2f;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.35rem;
+      font-weight: bold;
+      border-radius: 12px;
+      padding: 0.4rem 1.1rem;
+      margin: 0.2rem 0 0.7rem 0;
+      box-shadow: 0 2px 10px #00ffd044;
+      letter-spacing: 1.5px;
+      border: 2px solid #252c44;
     }
     .juego h3 {
-      margin: 0.5rem 0 0.2rem 0;
-      color: #4fc3f7;
-      font-size: 1.32rem;
-      letter-spacing: 1px;
+      font-family: 'Orbitron', Arial, sans-serif;
+      margin: 0.3rem 0 0.3rem 0;
+      color: #52e2f9;
+      font-size: 1.28rem;
+      letter-spacing: 1.5px;
+      user-select: none;
     }
-    .juego p {
-      margin: 0.2rem 0 0.6rem 0;
+    .cantidad-selector {
+      margin: 0.7rem 0 0.4rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .cantidad-selector button {
+      font-size: 1.2rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      padding: 0.25rem 0.7rem;
+      background: #252c44;
+      color: #00ffcc;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .cantidad-selector button:hover {
+      background: #00ffcc;
+      color: #252c44;
+    }
+    .cantidad-selector input {
+      width: 2.7rem;
+      text-align: center;
+      font-size: 1.1rem;
+      border: 1.3px solid #252c44;
+      border-radius: 6px;
+      background: #20283a;
+      color: #fff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      padding: 0.2rem 0.3rem;
     }
     #detalle, #carrito, #factura {
       padding: 2rem;
-      max-width: 600px;
+      max-width: 650px;
       margin: 2rem auto;
       background: #19213a;
-      border-radius: 14px;
-      box-shadow: 0 4px 24px #4fc3f722;
+      border-radius: 16px;
+      box-shadow: 0 4px 28px #00ffd022, 0 2px 24px #000c;
       display: none;
       animation: fadeIn 0.5s;
     }
     #detalle img {
-      max-width: 330px;
-      border-radius: 11px;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 12px #4fc3f722;
-      border: 2px solid #4fc3f7;
+      max-width: 350px;
+      border-radius: 13px;
+      margin-bottom: 1.1rem;
+      box-shadow: 0 2px 16px #00ffd022;
+      border: 2px solid #52e2f9;
       background: #101223;
       display: block;
       margin-left: auto;
@@ -143,19 +193,23 @@
     }
     #detalle video, #detalle iframe {
       width: 100%;
-      max-width: 420px;
-      height: 240px;
-      border-radius: 8px;
+      max-width: 460px;
+      height: 260px;
+      border-radius: 11px;
       margin-bottom: 1rem;
       display: block;
       margin-left: auto;
       margin-right: auto;
       background: #000;
-      box-shadow: 0 1px 8px #4fc3f733;
+      box-shadow: 0 1px 8px #52e2f9bb;
       border: 2px solid #222b3b;
     }
+    #detalle .precio-sticker {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
     #carrito h2, #factura h2 {
-      color: #4fc3f7;
+      color: #52e2f9;
       text-align: center;
       font-family: 'Orbitron', Arial, sans-serif;
       letter-spacing: 1.2px;
@@ -171,13 +225,14 @@
       background: #1e2540;
       padding: 0.9rem 1.1rem;
       margin: 0.5rem 0;
-      border-radius: 7px;
+      border-radius: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 10px #4fc3f711;
+      box-shadow: 0 2px 10px #00ffd011;
       border: 1.3px solid #283e66;
-      font-size: 1.04rem;
+      font-size: 1.07rem;
+      font-family: 'Share Tech Mono', 'Segoe UI', Arial, sans-serif;
     }
     .eliminar {
       background: #e57373;
@@ -186,15 +241,16 @@
       border-radius: 4px;
       padding: 0.3rem 0.7rem;
       cursor: pointer;
-      font-size: 0.96rem;
+      font-size: 0.98rem;
       margin-left: 1rem;
-      transition: background 0.2s;
+      transition: background 0.18s;
     }
     .eliminar:hover {
       background: #b71c1c;
     }
     #carrito p, #carrito strong {
       font-size: 1.18rem;
+      font-family: 'Orbitron', Arial, sans-serif;
     }
     .form-compra {
       margin: 1.2rem 0 0.5rem 0;
@@ -208,12 +264,13 @@
       border: 1.2px solid #2e3c5d;
       background: #141a2e;
       color: #fff;
-      font-size: 1.08rem;
+      font-size: 1.11rem;
       outline: none;
+      font-family: 'Share Tech Mono', Arial, sans-serif;
       transition: border 0.17s;
     }
     .form-compra input:focus {
-      border-color: #4fc3f7;
+      border-color: #00ffcc;
     }
     #factura {
       text-align: left;
@@ -224,13 +281,13 @@
       border-radius: 10px;
       padding: 1.2rem;
       margin-top: 1.3rem;
-      box-shadow: 0 2px 14px #4fc3f722;
-      font-size: 1.07rem;
+      box-shadow: 0 2px 14px #00ffd022;
+      font-size: 1.09rem;
       border: 1.5px solid #283e66;
     }
     #factura strong {
-      color: #4fc3f7;
-      font-size: 1.15rem;
+      color: #00ffcc;
+      font-size: 1.19rem;
     }
     @keyframes fadeIn {
       from {opacity: 0; transform: scale(0.96);}
@@ -239,17 +296,19 @@
     @media (max-width: 700px) {
       .catalogo {
         grid-template-columns: 1fr;
+        padding: 1rem;
       }
       #detalle, #carrito, #factura {
         padding: 1rem;
       }
+      header h1 { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Daygo Store Games 🎮</h1>
+  <h1>Gamer Vault Store</h1>
   <button class="btn" onclick="mostrarCarrito()">🛒 Carrito</button>
 </header>
 
@@ -283,10 +342,18 @@
 <section id="factura"></section>
 
 <script>
-  // 📌 LISTA DE JUEGOS (agrega tu video de YouTube en el campo video, formato embed: https://www.youtube.com/embed/VIDEOID)
+  // LISTA DE JUEGOS (con videos tipo Microsoft Store)
   const juegos = [
     {
       id: 1,
+      titulo: "Call of Duty®: Black Ops 6 - Edición Bóveda (Windows)",
+      precio: 620,
+      imagen: "imagenes/blackops6.jpg",
+      descripcion: "Call of Duty®: Black Ops 6 presenta la característica Campaña cinematográfica de Black Ops, la mejor experiencia de Multijugador y el épico regreso de Zombies pos rondas.",
+      video: "https://www.youtube.com/embed/QjU9Wq-BcK4"
+    },
+    {
+      id: 2,
       titulo: "The Legend of Zelda",
       precio: 149.99,
       imagen: "imagenes/zelda.jpg",
@@ -294,20 +361,12 @@
       video: "https://www.youtube.com/embed/1rPxiXXxftE"
     },
     {
-      id: 2,
+      id: 3,
       titulo: "FIFA 25",
       precio: 49,
       imagen: "imagenes/fifa.jpg",
       descripcion: "El mejor simulador de fútbol con gráficos realistas.",
-      video: "https://www.youtube.com/watch?v=KdKYsbm9WAU"
-    },
-    {
-      id: 3,
-      titulo: "Call of Duty",
-      precio: 200,
-      imagen: "imagenes/cod.jpg",
-      descripcion: "Juego de disparos en primera persona lleno de acción.",
-      video: "https://www.youtube.com/embed/QjU9Wq-BcK4"
+      video: "https://www.youtube.com/embed/5j8H0yFV8iA"
     }
   ];
 
@@ -340,33 +399,71 @@
     factura.style.display = "none";
     catalogo.innerHTML = "";
     if (catalogoFiltrado.length === 0) {
-      catalogo.innerHTML = "<p>No se encontraron juegos.</p>";
+      catalogo.innerHTML = "<p style='font-family:Orbitron;color:#00ffcc;text-align:center;'>No se encontraron juegos.</p>";
       return;
     }
-    catalogoFiltrado.forEach(juego => {
+    juegos.forEach(juego => {
+      // Filtrado por buscador
+      if (!catalogoFiltrado.includes(juego)) return;
+
+      let cantidad = 1;
       const card = document.createElement("div");
       card.classList.add("juego");
+      card.onclick = function(e) {
+        if (e.target.tagName === "BUTTON" || e.target.tagName === "INPUT") return;
+        verDetalle(juego.id);
+      };
       card.innerHTML = `
         <img src="${juego.imagen}" alt="${juego.titulo}">
         <h3>${juego.titulo}</h3>
-        <p><b>$${juego.precio}</b></p>
-        <button class="btn" onclick="verDetalle(${juego.id})">Ver Detalle</button>
-        <button class="btn" onclick="agregarCarrito(${juego.id})">Agregar 🛒</button>
+        <div class="precio-sticker">$${juego.precio}</div>
+        <div class="cantidad-selector" onclick="event.stopPropagation()">
+          <button onclick="cambiarCantidad(this, -1)">-</button>
+          <input type="number" value="1" min="1" max="99" onchange="validarCantidad(this)">
+          <button onclick="cambiarCantidad(this, 1)">+</button>
+        </div>
+        <button class="btn" onclick="agregarCarritoDesdeCatalogo(event, ${juego.id}, this)">Agregar 🛒</button>
       `;
       catalogo.appendChild(card);
     });
   }
 
+  // Buscador
   function filtrarCatalogo() {
     const query = buscador.value.trim().toLowerCase();
     if (query === "") {
       catalogoFiltrado = [...juegos];
     } else {
       catalogoFiltrado = juegos.filter(juego =>
-        juego.titulo.toLowerCase().includes(query)
+        juego.titulo.toLowerCase().includes(query) ||
+        juego.descripcion.toLowerCase().includes(query)
       );
     }
     mostrarCatalogo();
+  }
+
+  function cambiarCantidad(btn, delta) {
+    const input = btn.parentElement.querySelector('input');
+    let val = parseInt(input.value, 10) || 1;
+    val += delta;
+    if (val < 1) val = 1;
+    if (val > 99) val = 99;
+    input.value = val;
+  }
+  function validarCantidad(input) {
+    let val = parseInt(input.value, 10) || 1;
+    if (val < 1) val = 1;
+    if (val > 99) val = 99;
+    input.value = val;
+  }
+
+  function agregarCarritoDesdeCatalogo(e, id, btn) {
+    e.stopPropagation();
+    const card = btn.closest('.juego');
+    const input = card.querySelector('input[type=number]');
+    const cantidad = Math.max(1, parseInt(input.value, 10) || 1);
+    agregarCarrito(id, cantidad);
+    input.value = 1;
   }
 
   function verDetalle(id) {
@@ -375,32 +472,50 @@
     carrito.style.display = "none";
     factura.style.display = "none";
     detalle.style.display = "block";
-
     let videoHTML = "";
     if (juego.video) {
       if (juego.video.includes("youtube")) {
-        videoHTML = `<iframe src="${juego.video}" frameborder="0" allowfullscreen></iframe>`;
+        videoHTML = `<iframe src="${juego.video}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
       } else {
-        videoHTML = `<video src="${juego.video}" controls></video>`;
+        videoHTML = `<video src="${juego.video}" controls autoplay muted loop></video>`;
       }
     }
-
     detalle.innerHTML = `
       <h2>${juego.titulo}</h2>
       <img src="${juego.imagen}" alt="${juego.titulo}">
+      <div class="precio-sticker">$${juego.precio}</div>
       <p>${juego.descripcion}</p>
       ${videoHTML}
-      <p><strong>Precio: $${juego.precio}</strong></p>
-      <button class="btn" onclick="agregarCarrito(${juego.id})">Agregar al carrito</button>
+      <div class="cantidad-selector">
+        <button onclick="cambiarCantidad(this, -1)">-</button>
+        <input type="number" value="1" min="1" max="99" onchange="validarCantidad(this)">
+        <button onclick="cambiarCantidad(this, 1)">+</button>
+      </div>
+      <button class="btn" onclick="agregarCarritoDesdeDetalle(event, ${juego.id}, this)">Agregar 🛒</button>
       <button class="btn" onclick="mostrarCatalogo()">Volver</button>
     `;
+    setTimeout(() => { window.scrollTo(0, 0); }, 50);
   }
 
-  function agregarCarrito(id) {
+  function agregarCarritoDesdeDetalle(e, id, btn) {
+    e.stopPropagation();
+    const input = btn.parentElement.querySelector('input[type=number]');
+    const cantidad = Math.max(1, parseInt(input.value, 10) || 1);
+    agregarCarrito(id, cantidad);
+    input.value = 1;
+  }
+
+  function agregarCarrito(id, cantidad) {
     const juego = juegos.find(j => j.id === id);
-    carritoItems.push(juego);
+    const idx = carritoItems.findIndex(item => item.id === id);
+    if (idx >= 0) {
+      carritoItems[idx].cantidad += cantidad;
+    } else {
+      carritoItems.push({...juego, cantidad});
+    }
     guardarCarrito();
-    alert(juego.titulo + " agregado al carrito 🛒");
+    alert(`${juego.titulo} x${cantidad} agregado al carrito 🛒`);
+    mostrarCarrito();
   }
 
   function mostrarCarrito() {
@@ -412,14 +527,20 @@
     btnCompra.style.display = "inline-block";
     listaCarrito.innerHTML = "";
     let totalCompra = 0;
-    carritoItems.forEach((juego, idx) => {
+    carritoItems.forEach((item, idx) => {
+      const subtotal = item.precio * item.cantidad;
       const li = document.createElement("li");
       li.innerHTML = `
-        <span>${juego.titulo} - $${juego.precio}</span>
+        <span>
+          <b>${item.titulo}</b> 
+          <span style="color:#00ffcc;">x${item.cantidad}</span> 
+          <span style="font-family:'Orbitron',Arial;font-size:1.1em;color:#52e2f9;">$${item.precio}</span>
+          <span style="color:#fff;">| Subtotal: $${subtotal.toFixed(2)}</span>
+        </span>
         <button class="eliminar" onclick="eliminarDelCarrito(${idx})">✖</button>
       `;
       listaCarrito.appendChild(li);
-      totalCompra += juego.precio;
+      totalCompra += subtotal;
     });
     total.textContent = totalCompra.toFixed(2);
     if(carritoItems.length === 0) {
@@ -446,20 +567,17 @@
 
   function procesarCompra(event) {
     event.preventDefault();
-    // Obtener datos del formulario
     const nombre = document.getElementById("nombre").value.trim();
     const edad = document.getElementById("edad").value.trim();
     const celular = document.getElementById("celular").value.trim();
     const nit = document.getElementById("nit").value.trim();
-    // Calcular total
     let totalCompra = 0;
-    carritoItems.forEach(juego => totalCompra += juego.precio);
-    // Crear resumen de productos
     let productos = '';
-    carritoItems.forEach(juego => {
-      productos += `<li>${juego.titulo} - $${juego.precio}</li>`;
+    carritoItems.forEach(item => {
+      const subtotal = item.precio * item.cantidad;
+      productos += `<li>${item.titulo} x${item.cantidad} - $${subtotal.toFixed(2)}</li>`;
+      totalCompra += subtotal;
     });
-    // Mostrar factura
     factura.innerHTML = `
       <h2>Factura de compra</h2>
       <div class="resumen">
@@ -476,7 +594,6 @@
     `;
     factura.style.display = "block";
     carrito.style.display = "none";
-    // Limpiar carrito y formulario
     carritoItems = [];
     guardarCarrito();
     formCompra.reset();
@@ -488,7 +605,7 @@
     mostrarCatalogo();
   }
 
-  // Inicializamos mostrando el catálogo
+  // Inicialización
   mostrarCatalogo();
 </script>
 </body>
