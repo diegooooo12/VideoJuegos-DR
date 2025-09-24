@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Gamer Vault Store</title>
-  <!-- Fuentes gamer -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- Nueva fuente gamer y moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Share Tech Mono', 'Segoe UI', Arial, sans-serif;
+      font-family: 'Press Start 2P', Arial, sans-serif;
       margin: 0;
-      background: linear-gradient(120deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      background: #101014 url('https://cdn.pixabay.com/photo/2017/01/31/19/16/controller-2028072_1280.png') repeat;
+      background-size: 200px auto;
       color: #F5FAFF;
       min-height: 100vh;
-      background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
     }
     header {
-      background: #161b2d;
+      background: #08090d;
       padding: 2rem 2rem 1.2rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -23,23 +23,20 @@
       box-shadow: 0 2px 20px #000a;
     }
     header h1 {
-      font-family: 'Orbitron', 'Share Tech Mono', Arial, sans-serif;
-      font-size: 2.8rem;
-      color: #52e2f9;
+      font-family: 'Orbitron', 'Press Start 2P', Arial, sans-serif;
+      font-size: 2.4rem;
+      color: #00ffe7;
       letter-spacing: 2.5px;
       margin: 0;
       text-shadow: 0 0 22px #0ff, 0 2px 8px #001b44;
-      background: linear-gradient(90deg, #52e2f9 60%, #1565c0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       user-select: none;
     }
     .btn {
       padding: 0.7rem 1.6rem;
-      background: linear-gradient(90deg, #00ffcc 60%, #0099ff 100%);
+      background: linear-gradient(90deg, #00ffe7 60%, #00535a 100%);
       border: none;
       border-radius: 7px;
-      color: #242424;
+      color: #101014;
       font-family: 'Orbitron', Arial, sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
@@ -49,13 +46,13 @@
       outline: none;
     }
     .btn:hover {
-      background: linear-gradient(90deg, #0099ff 60%, #00ffcc 100%);
+      background: linear-gradient(90deg, #00bfae 60%, #00ffe7 100%);
       color: #fff;
       transform: translateY(-2px) scale(1.06);
       box-shadow: 0 4px 24px #00ffd044;
     }
     .search-box {
-      background: #181e29;
+      background: #181826;
       padding: 0.5rem 1rem;
       border-radius: 8px;
       margin: 1.2rem auto 0.5rem auto;
@@ -71,8 +68,8 @@
       border: none;
       font-size: 1.1rem;
       outline: none;
-      background: #222b3b;
-      color: #f1f1f1;
+      background: #0d121a;
+      color: #00ffe7;
       font-family: 'Orbitron', Arial, sans-serif;
       letter-spacing: 1px;
     }
@@ -85,7 +82,7 @@
       margin: 0 auto;
     }
     .juego {
-      background: #181d2f;
+      background: #191921;
       border-radius: 18px;
       box-shadow: 0 4px 28px #00ffd011, 0 2px 24px #000b;
       padding: 1.1rem 1.1rem 1.8rem 1.1rem;
@@ -98,14 +95,14 @@
     }
     .juego:hover {
       transform: scale(1.03) translateY(-4px);
-      border-color: #52e2f9;
-      box-shadow: 0 8px 40px #52e2f933, 0 2px 32px #001b;
+      border-color: #00ffe7;
+      box-shadow: 0 8px 40px #00ffd033, 0 2px 32px #001b;
     }
     .juego img {
       width: 100%;
       height: 200px;
       object-fit: contain;
-      background: #141a24;
+      background: #101014;
       border-radius: 12px;
       margin-bottom: 1.1rem;
       border: 2px solid #252c44;
@@ -117,8 +114,8 @@
     }
     .juego .precio-sticker {
       display: inline-block;
-      background: linear-gradient(90deg, #00ffcc 60%, #0099ff 100%);
-      color: #181d2f;
+      background: linear-gradient(90deg, #00ffe7 60%, #00535a 100%);
+      color: #101014;
       font-family: 'Orbitron', Arial, sans-serif;
       font-size: 1.35rem;
       font-weight: bold;
@@ -130,10 +127,10 @@
       border: 2px solid #252c44;
     }
     .juego h3 {
-      font-family: 'Orbitron', Arial, sans-serif;
+      font-family: 'Press Start 2P', Arial, sans-serif;
       margin: 0.3rem 0 0.3rem 0;
-      color: #52e2f9;
-      font-size: 1.28rem;
+      color: #00ffe7;
+      font-size: 1.02rem;
       letter-spacing: 1.5px;
       user-select: none;
     }
@@ -149,14 +146,14 @@
       font-family: 'Orbitron', Arial, sans-serif;
       padding: 0.25rem 0.7rem;
       background: #252c44;
-      color: #00ffcc;
+      color: #00ffe7;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       transition: background 0.15s, color 0.15s;
     }
     .cantidad-selector button:hover {
-      background: #00ffcc;
+      background: #00ffe7;
       color: #252c44;
     }
     .cantidad-selector input {
@@ -174,7 +171,7 @@
       padding: 2rem;
       max-width: 650px;
       margin: 2rem auto;
-      background: #19213a;
+      background: #13131a;
       border-radius: 16px;
       box-shadow: 0 4px 28px #00ffd022, 0 2px 24px #000c;
       display: none;
@@ -185,7 +182,7 @@
       border-radius: 13px;
       margin-bottom: 1.1rem;
       box-shadow: 0 2px 16px #00ffd022;
-      border: 2px solid #52e2f9;
+      border: 2px solid #00ffe7;
       background: #101223;
       display: block;
       margin-left: auto;
@@ -201,7 +198,7 @@
       margin-left: auto;
       margin-right: auto;
       background: #000;
-      box-shadow: 0 1px 8px #52e2f9bb;
+      box-shadow: 0 1px 8px #00ffe7bb;
       border: 2px solid #222b3b;
     }
     #detalle .precio-sticker {
@@ -209,7 +206,7 @@
       margin-bottom: 1.2rem;
     }
     #carrito h2, #factura h2 {
-      color: #52e2f9;
+      color: #00ffe7;
       text-align: center;
       font-family: 'Orbitron', Arial, sans-serif;
       letter-spacing: 1.2px;
@@ -222,7 +219,7 @@
       overflow-y: auto;
     }
     #carrito li {
-      background: #1e2540;
+      background: #14141b;
       padding: 0.9rem 1.1rem;
       margin: 0.5rem 0;
       border-radius: 8px;
@@ -232,7 +229,7 @@
       box-shadow: 0 2px 10px #00ffd011;
       border: 1.3px solid #283e66;
       font-size: 1.07rem;
-      font-family: 'Share Tech Mono', 'Segoe UI', Arial, sans-serif;
+      font-family: 'Press Start 2P', Arial, sans-serif;
     }
     .eliminar {
       background: #e57373;
@@ -266,11 +263,11 @@
       color: #fff;
       font-size: 1.11rem;
       outline: none;
-      font-family: 'Share Tech Mono', Arial, sans-serif;
+      font-family: 'Press Start 2P', Arial, sans-serif;
       transition: border 0.17s;
     }
     .form-compra input:focus {
-      border-color: #00ffcc;
+      border-color: #00ffe7;
     }
     #factura {
       text-align: left;
@@ -286,7 +283,7 @@
       border: 1.5px solid #283e66;
     }
     #factura strong {
-      color: #00ffcc;
+      color: #00ffe7;
       font-size: 1.19rem;
     }
     @keyframes fadeIn {
@@ -301,7 +298,7 @@
       #detalle, #carrito, #factura {
         padding: 1rem;
       }
-      header h1 { font-size: 1.6rem; }
+      header h1 { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -342,14 +339,14 @@
 <section id="factura"></section>
 
 <script>
-  // LISTA DE JUEGOS (con videos tipo Microsoft Store)
+  // LISTA DE JUEGOS (imagen del Call of Duty exacta que mandaste, cambia la ruta si la subes a otra carpeta)
   const juegos = [
     {
       id: 1,
       titulo: "Call of Duty®: Black Ops 6 - Edición Bóveda (Windows)",
       precio: 620,
-      imagen: "imagenes/blackops6.jpg",
-      descripcion: "Call of Duty®: Black Ops 6 presenta la característica Campaña cinematográfica de Black Ops, la mejor experiencia de Multijugador y el épico regreso de Zombies pos rondas.",
+      imagen: "imagenes/cod_bo6_vault.png", // Usa aquí la imagen exacta que tú subiste
+      descripcion: "Call of Duty®: Black Ops 6 presenta la característica Campaña cinematográfica de Black Ops, la mejor experiencia de Multijugador y el épico regreso de Zomis pos rondas.",
       video: "https://www.youtube.com/embed/QjU9Wq-BcK4"
     },
     {
@@ -399,7 +396,7 @@
     factura.style.display = "none";
     catalogo.innerHTML = "";
     if (catalogoFiltrado.length === 0) {
-      catalogo.innerHTML = "<p style='font-family:Orbitron;color:#00ffcc;text-align:center;'>No se encontraron juegos.</p>";
+      catalogo.innerHTML = "<p style='font-family:Orbitron;color:#00ffe7;text-align:center;'>No se encontraron juegos.</p>";
       return;
     }
     juegos.forEach(juego => {
@@ -515,7 +512,7 @@
     }
     guardarCarrito();
     alert(`${juego.titulo} x${cantidad} agregado al carrito 🛒`);
-    mostrarCarrito();
+    // Ya no te lleva al carrito directo
   }
 
   function mostrarCarrito() {
@@ -533,8 +530,8 @@
       li.innerHTML = `
         <span>
           <b>${item.titulo}</b> 
-          <span style="color:#00ffcc;">x${item.cantidad}</span> 
-          <span style="font-family:'Orbitron',Arial;font-size:1.1em;color:#52e2f9;">$${item.precio}</span>
+          <span style="color:#00ffe7;">x${item.cantidad}</span> 
+          <span style="font-family:'Orbitron',Arial;font-size:1.1em;color:#00ffe7;">$${item.precio}</span>
           <span style="color:#fff;">| Subtotal: $${subtotal.toFixed(2)}</span>
         </span>
         <button class="eliminar" onclick="eliminarDelCarrito(${idx})">✖</button>
