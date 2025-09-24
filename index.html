@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Gamer Vault Store</title>
-  <!-- Nueva fuente gamer y moderna -->
+  <!-- Fuentes gamer -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Press Start 2P', Arial, sans-serif;
       margin: 0;
-      background: #101014 url('https://cdn.pixabay.com/photo/2017/01/31/19/16/controller-2028072_1280.png') repeat;
-      background-size: 200px auto;
+      background: #0a0a0a url('https://cdn.pixabay.com/photo/2017/01/31/19/16/controller-2028072_1280.png') repeat;
+      background-size: 180px auto;
       color: #F5FAFF;
       min-height: 100vh;
     }
@@ -339,15 +339,15 @@
 <section id="factura"></section>
 
 <script>
-  // LISTA DE JUEGOS (imagen del Call of Duty exacta que mandaste, cambia la ruta si la subes a otra carpeta)
+  // LISTA DE JUEGOS (pon tu video mp4 en el campo video)
   const juegos = [
     {
       id: 1,
-      titulo: "Call of Duty",
+      titulo: "Call of Duty®: Black Ops 6 - Edición Bóveda (Windows)",
       precio: 620,
-      imagen: "imagenes/cod.jpg", // Usa aquí la imagen exacta que tú subiste
+      imagen: "imagenes/cod_bo6_vault.png",
       descripcion: "Call of Duty®: Black Ops 6 presenta la característica Campaña cinematográfica de Black Ops, la mejor experiencia de Multijugador y el épico regreso de Zomis pos rondas.",
-      video: "https://www.youtube.com/embed/QjU9Wq-BcK4"
+      video: "videos/callofduty.mp4" // <--- Pon tu video aquí
     },
     {
       id: 2,
@@ -355,7 +355,7 @@
       precio: 149.99,
       imagen: "imagenes/zelda.jpg",
       descripcion: "Un juego de aventura y exploración en un mundo mágico.",
-      video: "https://www.youtube.com/embed/1rPxiXXxftE"
+      video: "videos/zelda.mp4"
     },
     {
       id: 3,
@@ -363,7 +363,7 @@
       precio: 49,
       imagen: "imagenes/fifa.jpg",
       descripcion: "El mejor simulador de fútbol con gráficos realistas.",
-      video: "https://www.youtube.com/embed/5j8H0yFV8iA"
+      video: "videos/fifa.mp4"
     }
   ];
 
@@ -470,12 +470,10 @@
     factura.style.display = "none";
     detalle.style.display = "block";
     let videoHTML = "";
-    if (juego.video) {
-      if (juego.video.includes("youtube")) {
-        videoHTML = `<iframe src="${juego.video}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-      } else {
-        videoHTML = `<video src="${juego.video}" controls autoplay muted loop></video>`;
-      }
+    if (juego.video && juego.video.endsWith('.mp4')) {
+      videoHTML = `<video src="${juego.video}" controls autoplay muted loop></video>`;
+    } else if (juego.video) {
+      videoHTML = `<iframe src="${juego.video}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     }
     detalle.innerHTML = `
       <h2>${juego.titulo}</h2>
