@@ -1,614 +1,512 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Gamer Vault Store</title>
-  <!-- Fuentes gamer -->
+  <meta charset="UTF-8" />
+  <title>Vault Store — Tienda</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Press Start 2P', Arial, sans-serif;
-      margin: 0;
-      background: #0a0a0a url('https://cdn.pixabay.com/photo/2017/01/31/19/16/controller-2028072_1280.png') repeat;
-      background-size: 180px auto;
-      color: #F5FAFF;
-      min-height: 100vh;
+    /* --- Estilos base (mantengo estética "gamer" pero más neutra) --- */
+    :root{
+      --bg:#0a0a0a;
+      --accent:#00ffe7;
+      --card:#191921;
+      --muted:#252c44;
+      --glass:#11131a;
+      --text:#F5FAFF;
+      --success:#25c26a;
     }
-    header {
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Press Start 2P',Arial, sans-serif;
+      background: linear-gradient(180deg,#050507 0%, #0a0a0a 100%);
+      color:var(--text);
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+    }
+    header{
       background: #08090d;
-      padding: 2rem 2rem 1.2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 20px #000a;
+      padding:1.2rem 1.4rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      box-shadow:0 2px 20px #000a;
     }
-    header h1 {
-      font-family: 'Orbitron', 'Press Start 2P', Arial, sans-serif;
-      font-size: 2.4rem;
-      color: #00ffe7;
-      letter-spacing: 2.5px;
-      margin: 0;
-      text-shadow: 0 0 22px #0ff, 0 2px 8px #001b44;
-      user-select: none;
+    header h1{
+      margin:0;
+      font-family:'Orbitron','Press Start 2P',Arial;
+      font-size:1.6rem;
+      color:var(--accent);
+      letter-spacing:1.5px;
     }
-    .btn {
-      padding: 0.7rem 1.6rem;
-      background: linear-gradient(90deg, #00ffe7 60%, #00535a 100%);
-      border: none;
-      border-radius: 7px;
-      color: #101014;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s, color 0.15s;
-      box-shadow: 0 2px 12px #00ffd033;
-      outline: none;
+    .controls{
+      display:flex;
+      gap:0.6rem;
+      align-items:center;
     }
-    .btn:hover {
-      background: linear-gradient(90deg, #00bfae 60%, #00ffe7 100%);
-      color: #fff;
-      transform: translateY(-2px) scale(1.06);
-      box-shadow: 0 4px 24px #00ffd044;
+    .btn{
+      appearance:none;
+      border:0;
+      padding:0.5rem 0.9rem;
+      border-radius:8px;
+      background:linear-gradient(90deg,var(--accent) 60%, #00535a 100%);
+      color:#061018;
+      font-weight:700;
+      cursor:pointer;
+      font-family:'Orbitron',Arial;
+      transition:transform .12s, box-shadow .12s;
     }
-    .search-box {
-      background: #181826;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      margin: 1.2rem auto 0.5rem auto;
-      max-width: 340px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 2px 8px #0003;
+    .btn:active{transform:translateY(1px)}
+    .search-box{
+      margin:0.9rem auto;
+      max-width:1200px;
+      display:flex;
+      gap:0.6rem;
+      padding:0 1rem;
+      align-items:center;
+      justify-content:space-between;
     }
-    .search-box input {
-      width: 100%;
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1.1rem;
-      outline: none;
-      background: #0d121a;
-      color: #00ffe7;
-      font-family: 'Orbitron', Arial, sans-serif;
-      letter-spacing: 1px;
+    .search-box input[type="search"]{
+      width:60%;
+      min-width:220px;
+      padding:0.6rem 0.9rem;
+      border-radius:8px;
+      border:0;
+      background:#0d121a;
+      color:var(--accent);
+      font-family:'Orbitron',Arial;
+      font-size:0.95rem;
     }
-    .catalogo {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      padding: 2.5rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    .filters{
+      display:flex;
+      gap:0.5rem;
+      align-items:center;
     }
-    .juego {
-      background: #191921;
-      border-radius: 18px;
-      box-shadow: 0 4px 28px #00ffd011, 0 2px 24px #000b;
-      padding: 1.1rem 1.1rem 1.8rem 1.1rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border: 2.5px solid #252c44;
-      cursor: pointer;
-      transition: transform 0.19s, box-shadow 0.2s, border 0.18s;
+    select, .small-btn{
+      padding:0.45rem 0.65rem;
+      border-radius:8px;
+      background:#141726;
+      color:var(--text);
+      border:1px solid var(--muted);
+      font-family:'Orbitron',Arial;
+      font-size:0.9rem;
     }
-    .juego:hover {
-      transform: scale(1.03) translateY(-4px);
-      border-color: #00ffe7;
-      box-shadow: 0 8px 40px #00ffd033, 0 2px 32px #001b;
+
+    .catalogo{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1.6rem;
+      padding:1.6rem;
+      max-width:1200px;
+      margin:0 auto 3rem;
     }
-    .juego img {
-      width: 100%;
-      height: 200px;
-      object-fit: contain;
-      background: #101014;
-      border-radius: 12px;
-      margin-bottom: 1.1rem;
-      border: 2px solid #252c44;
-      box-shadow: 0 2px 14px #00ffd022;
-      padding: 8px;
-      transition: border 0.18s, background 0.17s;
-      pointer-events: none;
-      user-select: none;
+    .card{
+      background:var(--card);
+      border-radius:14px;
+      padding:1rem;
+      text-align:center;
+      border:2px solid var(--muted);
+      transition:transform .15s, box-shadow .15s, border-color .12s;
+      position:relative;
+      overflow:hidden;
     }
-    .juego .precio-sticker {
-      display: inline-block;
-      background: linear-gradient(90deg, #00ffe7 60%, #00535a 100%);
-      color: #101014;
-      font-family: 'Orbitron', Arial, sans-serif;
-      font-size: 1.35rem;
-      font-weight: bold;
-      border-radius: 12px;
-      padding: 0.4rem 1.1rem;
-      margin: 0.2rem 0 0.7rem 0;
-      box-shadow: 0 2px 10px #00ffd044;
-      letter-spacing: 1.5px;
-      border: 2px solid #252c44;
+    .card:hover{ transform:translateY(-6px) scale(1.01); border-color:var(--accent); box-shadow:0 8px 28px #00ffd022;}
+    .card img{ width:100%; height:140px; object-fit:contain; background:#0b0b0b; border-radius:10px; padding:6px;}
+    .precio-sticker{
+      display:inline-block;
+      margin:0.5rem 0;
+      padding:0.35rem 0.9rem;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--accent) 60%,#00535a 100%);
+      color:#061018;
+      font-family:'Orbitron';
+      font-weight:700;
     }
-    .juego h3 {
-      font-family: 'Press Start 2P', Arial, sans-serif;
-      margin: 0.3rem 0 0.3rem 0;
-      color: #00ffe7;
-      font-size: 1.02rem;
-      letter-spacing: 1.5px;
-      user-select: none;
-    }
-    .cantidad-selector {
-      margin: 0.7rem 0 0.4rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-    .cantidad-selector button {
-      font-size: 1.2rem;
-      font-family: 'Orbitron', Arial, sans-serif;
-      padding: 0.25rem 0.7rem;
-      background: #252c44;
-      color: #00ffe7;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-    }
-    .cantidad-selector button:hover {
-      background: #00ffe7;
-      color: #252c44;
-    }
-    .cantidad-selector input {
-      width: 2.7rem;
-      text-align: center;
-      font-size: 1.1rem;
-      border: 1.3px solid #252c44;
-      border-radius: 6px;
-      background: #20283a;
-      color: #fff;
-      font-family: 'Orbitron', Arial, sans-serif;
-      padding: 0.2rem 0.3rem;
-    }
-    #detalle, #carrito, #factura {
-      padding: 2rem;
-      max-width: 650px;
-      margin: 2rem auto;
-      background: #13131a;
-      border-radius: 16px;
-      box-shadow: 0 4px 28px #00ffd022, 0 2px 24px #000c;
-      display: none;
-      animation: fadeIn 0.5s;
-    }
-    #detalle img {
-      max-width: 350px;
-      border-radius: 13px;
-      margin-bottom: 1.1rem;
-      box-shadow: 0 2px 16px #00ffd022;
-      border: 2px solid #00ffe7;
-      background: #101223;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    #detalle video, #detalle iframe {
-      width: 100%;
-      max-width: 460px;
-      height: 260px;
-      border-radius: 11px;
-      margin-bottom: 1rem;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      background: #000;
-      box-shadow: 0 1px 8px #00ffe7bb;
-      border: 2px solid #222b3b;
-    }
-    #detalle .precio-sticker {
-      font-size: 1.5rem;
-      margin-bottom: 1.2rem;
-    }
-    #carrito h2, #factura h2 {
-      color: #00ffe7;
-      text-align: center;
-      font-family: 'Orbitron', Arial, sans-serif;
-      letter-spacing: 1.2px;
-    }
-    #carrito ul {
-      list-style: none;
-      padding: 0;
-      margin: 1.1rem 0;
-      max-height: 265px;
-      overflow-y: auto;
-    }
-    #carrito li {
-      background: #14141b;
-      padding: 0.9rem 1.1rem;
-      margin: 0.5rem 0;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px #00ffd011;
-      border: 1.3px solid #283e66;
-      font-size: 1.07rem;
-      font-family: 'Press Start 2P', Arial, sans-serif;
-    }
-    .eliminar {
-      background: #e57373;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 0.3rem 0.7rem;
-      cursor: pointer;
-      font-size: 0.98rem;
-      margin-left: 1rem;
-      transition: background 0.18s;
-    }
-    .eliminar:hover {
-      background: #b71c1c;
-    }
-    #carrito p, #carrito strong {
-      font-size: 1.18rem;
-      font-family: 'Orbitron', Arial, sans-serif;
-    }
-    .form-compra {
-      margin: 1.2rem 0 0.5rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .form-compra input {
-      padding: 0.7rem;
-      border-radius: 6px;
-      border: 1.2px solid #2e3c5d;
-      background: #141a2e;
-      color: #fff;
-      font-size: 1.11rem;
-      outline: none;
-      font-family: 'Press Start 2P', Arial, sans-serif;
-      transition: border 0.17s;
-    }
-    .form-compra input:focus {
-      border-color: #00ffe7;
-    }
-    #factura {
-      text-align: left;
-      color: #e5eaf5;
-    }
-    #factura .resumen {
-      background: #111726;
-      border-radius: 10px;
-      padding: 1.2rem;
-      margin-top: 1.3rem;
-      box-shadow: 0 2px 14px #00ffd022;
-      font-size: 1.09rem;
-      border: 1.5px solid #283e66;
-    }
-    #factura strong {
-      color: #00ffe7;
-      font-size: 1.19rem;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.96);}
-      to {opacity: 1; transform: scale(1);}
-    }
-    @media (max-width: 700px) {
-      .catalogo {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-      #detalle, #carrito, #factura {
-        padding: 1rem;
-      }
-      header h1 { font-size: 1.3rem; }
+    .cantidad-selector{ display:flex; gap:0.6rem; align-items:center; justify-content:center; margin-top:0.6rem;}
+    .cantidad-selector input{ width:3rem; text-align:center; padding:0.2rem; border-radius:6px; background:#20283a; color:#fff; border:1px solid var(--muted); font-family:'Orbitron';}
+
+    /* paneles */
+    #detalle, #carrito, #factura{ max-width:760px; margin:1.6rem auto; background:var(--glass); padding:1rem; border-radius:12px; display:none; border:1px solid #222b3b; }
+    #carrito ul{ list-style:none; padding:0; margin:0.8rem 0; max-height:300px; overflow:auto;}
+    #carrito li{ display:flex; justify-content:space-between; gap:0.6rem; align-items:center; background:#14141b; padding:0.6rem; border-radius:8px; margin-bottom:0.6rem;}
+    .eliminar{ background:#e57373; border:0; padding:0.35rem 0.6rem; border-radius:6px; cursor:pointer; color:#fff; }
+    .msg{ position:fixed; right:1rem; bottom:1rem; background:linear-gradient(90deg,var(--success),#0b7f4b); padding:0.7rem 1rem; border-radius:10px; color:#061018; font-weight:700; display:none; }
+
+    @media (max-width:700px){
+      header h1{ font-size:1.05rem }
+      .search-box input[type="search"]{ width:100% }
+      .search-box{ flex-direction:column; gap:0.6rem; align-items:stretch; padding:0.8rem 1rem;}
+      .controls{ width:100%; justify-content:flex-end }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Vault Store</h1>
+    <div class="controls">
+      <button class="btn" type="button" onclick="mostrarCarrito()" aria-label="Abrir carrito">🛒 Carrito</button>
+    </div>
+  </header>
 
-<header>
-  <h1>Gamer Vault Store</h1>
-  <button class="btn" onclick="mostrarCarrito()">🛒 Carrito</button>
-</header>
+  <div class="search-box" role="region" aria-label="Búsqueda y filtros">
+    <input id="buscador" type="search" placeholder="Buscar producto, categoría o descr..." oninput="filtrarCatalogo()" aria-label="Buscar productos">
+    <div class="filters">
+      <select id="filtroCategoria" onchange="filtrarCatalogo()">
+        <option value="">Todas las categorías</option>
+      </select>
+      <select id="orden" onchange="ordenarCatalogo()">
+        <option value="relevancia">Orden: Relevancia</option>
+        <option value="precio-asc">Precio: menor → mayor</option>
+        <option value="precio-desc">Precio: mayor → menor</option>
+      </select>
+    </div>
+  </div>
 
-<div class="search-box">
-  <input type="text" id="buscador" placeholder="Buscar juego..." oninput="filtrarCatalogo()" />
-</div>
+  <section id="catalogo" class="catalogo" aria-live="polite"></section>
 
-<!-- 📌 CATÁLOGO -->
-<section id="catalogo" class="catalogo"></section>
+  <section id="detalle" aria-live="polite"></section>
 
-<!-- 📌 DETALLE DEL JUEGO -->
-<section id="detalle"></section>
+  <section id="carrito" aria-live="polite">
+    <h2>Carrito de compras</h2>
+    <ul id="listaCarrito"></ul>
+    <p><strong>Total: $<span id="total">0.00</span></strong></p>
+    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+      <button class="btn" type="button" onclick="volverCatalogo()">Seguir viendo</button>
+      <button class="btn" type="button" id="btnCompra" onclick="mostrarFormularioCompra()">Confirmar compra</button>
+    </div>
 
-<!-- 📌 CARRITO -->
-<section id="carrito">
-  <h2>Carrito de compras</h2>
-  <ul id="listaCarrito"></ul>
-  <p><strong>Total: $<span id="total">0</span></strong></p>
-  <button class="btn" onclick="volverCatalogo()">Seguir viendo</button>
-  <button class="btn" onclick="mostrarFormularioCompra()" id="btnCompra" style="margin-left:1rem">Confirmar compra</button>
-  <form class="form-compra" id="formCompra" style="display:none" onsubmit="return procesarCompra(event)">
-    <input type="text" id="nombre" placeholder="Nombre completo" required>
-    <input type="number" id="edad" placeholder="Edad" min="1" max="120" required>
-    <input type="tel" id="celular" placeholder="Celular" pattern="[0-9]{7,15}" required>
-    <input type="text" id="nit" placeholder="NIT (opcional)">
-    <button class="btn" type="submit">Finalizar compra</button>
-  </form>
-</section>
+    <form id="formCompra" style="display:none;margin-top:1rem;" onsubmit="return procesarCompra(event)" class="form-compra" aria-label="Formulario de compra">
+      <input id="nombre" placeholder="Nombre completo" required />
+      <input id="email" type="email" placeholder="Email" required />
+      <input id="celular" placeholder="Celular" pattern="[0-9]{7,15}" required />
+      <button class="btn" type="submit">Finalizar compra</button>
+    </form>
+  </section>
 
-<!-- 📌 FACTURA -->
-<section id="factura"></section>
+  <section id="factura" aria-live="polite"></section>
+
+  <div id="mensaje" class="msg" role="status" aria-live="polite"></div>
 
 <script>
-  // LISTA DE JUEGOS (pon tu video mp4 en el campo video)
-  const juegos = [
+  // --- Datos de ejemplo: ahora "productos" genéricos, precios numéricos, categoría y stock ---
+  const productos = [
     {
       id: 1,
-      titulo: "Call of Duty®: Black Ops 6 - Edición Bóveda (Windows)",
-      precio: 620,
-      imagen: "imagenes/cod.jpg",
-      descripcion: "Call of Duty®: Black Ops 6 presenta la característica Campaña cinematográfica de Black Ops, la mejor experiencia de Multijugador y el épico regreso de Zomis pos rondas.",
-      video: "https://drive.google.com/drive/u/0/folders/19zeL9f8J1RyYLB-oZx93n7olJEflDLk4" // <--- Pon tu video aquí
+      titulo: "Auriculares Gamer V2",
+      precio: 49.99,
+      imagen: "imagenes/auriculares.jpg",
+      descripcion: "Auriculares con micrófono, sonido envolvente y RGB.",
+      categoria: "Accesorios",
+      stock: 25,
+      sku: "AC-001"
     },
     {
       id: 2,
-      titulo: "The Legend of Zelda",
-      precio: 149.99,
-      imagen: "imagenes/zelda.jpg",
-      descripcion: "Un juego de aventura y exploración en un mundo mágico.",
-      video: "videos/zelda.mp4"
+      titulo: "Teclado Mecánico TKL",
+      precio: 89.90,
+      imagen: "imagenes/teclado.jpg",
+      descripcion: "Switches azules, retroiluminación y diseño compacto.",
+      categoria: "Accesorios",
+      stock: 14,
+      sku: "AC-002"
     },
     {
       id: 3,
-      titulo: "FIFA 25",
-      precio: 49,
-      imagen: "imagenes/fifa.jpg",
-      descripcion: "El mejor simulador de fútbol con gráficos realistas.",
-      video: "videos/fifa.mp4"
-    }
-      {
-      id: 4,
-      titulo: "Free Fire",
-      precio: gratis,
-      imagen: "imagenes/cod.jpg",
-      descripcion: "Call of Duty®: Black Ops 6 presenta la característica Campaña cinematográfica de Black Ops, la mejor experiencia de Multijugador y el épico regreso de Zomis pos rondas.",
-      video: "https://drive.google.com/drive/u/0/folders/19zeL9f8J1RyYLB-oZx93n7olJEflDLk4" // <--- Pon tu video aquí
+      titulo: "Monitor 27\" 144Hz",
+      precio: 249.00,
+      imagen: "imagenes/monitor.jpg",
+      descripcion: "Pantalla IPS 144Hz para juegos y productividad.",
+      categoria: "Hardware",
+      stock: 8,
+      sku: "HW-010"
     },
+    {
+      id: 4,
+      titulo: "Membresía Premium (1 mes)",
+      precio: 0.00,
+      imagen: "imagenes/membresia.jpg",
+      descripcion: "Prueba gratuita o promoción: descripción breve.",
+      categoria: "Servicios",
+      stock: 9999,
+      sku: "SV-100"
+    }
   ];
 
-  const catalogo = document.getElementById("catalogo");
-  const detalle = document.getElementById("detalle");
-  const carrito = document.getElementById("carrito");
-  const listaCarrito = document.getElementById("listaCarrito");
-  const total = document.getElementById("total");
-  const btnCompra = document.getElementById("btnCompra");
-  const formCompra = document.getElementById("formCompra");
-  const factura = document.getElementById("factura");
-  const buscador = document.getElementById("buscador");
+  // --- Estado y referencias DOM ---
+  const catalogoEl = document.getElementById('catalogo');
+  const detalleEl = document.getElementById('detalle');
+  const carritoEl = document.getElementById('carrito');
+  const facturaEl = document.getElementById('factura');
+  const listaCarritoEl = document.getElementById('listaCarrito');
+  const totalEl = document.getElementById('total');
+  const buscador = document.getElementById('buscador');
+  const filtroCategoria = document.getElementById('filtroCategoria');
+  const ordenSelect = document.getElementById('orden');
+  const mensaje = document.getElementById('mensaje');
+  let carritoItems = JSON.parse(localStorage.getItem('carrito')) || [];
+  let catalogoFiltrado = [...productos];
 
-  function guardarCarrito() {
-    localStorage.setItem('carrito', JSON.stringify(carritoItems));
+  // --- Inicialización de filtros (categorías dinámicas) ---
+  function initFiltros(){
+    const categorias = Array.from(new Set(productos.map(p=>p.categoria))).sort();
+    categorias.forEach(cat=>{
+      const opt = document.createElement('option');
+      opt.value = cat;
+      opt.textContent = cat;
+      filtroCategoria.appendChild(opt);
+    });
   }
-  function cargarCarrito() {
-    const datos = localStorage.getItem('carrito');
-    return datos ? JSON.parse(datos) : [];
-  }
-  let carritoItems = cargarCarrito();
 
-  // Estado para catálogo filtrado
-  let catalogoFiltrado = [...juegos];
-
-  function mostrarCatalogo() {
-    catalogo.style.display = "grid";
-    detalle.style.display = "none";
-    carrito.style.display = "none";
-    factura.style.display = "none";
-    catalogo.innerHTML = "";
-    if (catalogoFiltrado.length === 0) {
-      catalogo.innerHTML = "<p style='font-family:Orbitron;color:#00ffe7;text-align:center;'>No se encontraron juegos.</p>";
+  // --- Mostrar catálogo ---
+  function mostrarCatalogo(){
+    catalogoEl.style.display = 'grid';
+    detalleEl.style.display = 'none';
+    carritoEl.style.display = 'none';
+    facturaEl.style.display = 'none';
+    catalogoEl.innerHTML = '';
+    if(catalogoFiltrado.length === 0){
+      catalogoEl.innerHTML = `<p style="font-family:Orbitron;color:var(--accent);text-align:center;">No se encontraron productos.</p>`;
       return;
     }
-    juegos.forEach(juego => {
-      // Filtrado por buscador
-      if (!catalogoFiltrado.includes(juego)) return;
-
-      let cantidad = 1;
-      const card = document.createElement("div");
-      card.classList.add("juego");
-      card.onclick = function(e) {
-        if (e.target.tagName === "BUTTON" || e.target.tagName === "INPUT") return;
-        verDetalle(juego.id);
-      };
+    catalogoFiltrado.forEach(prod=>{
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.setAttribute('tabindex','0');
       card.innerHTML = `
-        <img src="${juego.imagen}" alt="${juego.titulo}">
-        <h3>${juego.titulo}</h3>
-        <div class="precio-sticker">$${juego.precio}</div>
+        <img src="${prod.imagen}" alt="${escapeHtml(prod.titulo)}">
+        <h3 style="margin:.6rem 0 .2rem 0;color:var(--accent);font-size:.95rem">${escapeHtml(prod.titulo)}</h3>
+        <div class="precio-sticker">${formatPrecio(prod.precio)}</div>
+        <p style="font-size:.78rem; color:#cfe8ff; min-height:2.2em">${escapeHtml(prod.descripcion)}</p>
+        <div style="margin-top:.6rem;font-size:.78rem;color:#bcd">${escapeHtml(prod.categoria)} • SKU ${escapeHtml(prod.sku)}</div>
         <div class="cantidad-selector" onclick="event.stopPropagation()">
-          <button onclick="cambiarCantidad(this, -1)">-</button>
-          <input type="number" value="1" min="1" max="99" onchange="validarCantidad(this)">
-          <button onclick="cambiarCantidad(this, 1)">+</button>
+          <button class="small-btn" type="button" onclick="cambiarCantidad(this,-1)">-</button>
+          <input type="number" value="1" min="1" max="${prod.stock}" aria-label="Cantidad">
+          <button class="small-btn" type="button" onclick="cambiarCantidad(this,1)">+</button>
         </div>
-        <button class="btn" onclick="agregarCarritoDesdeCatalogo(event, ${juego.id}, this)">Agregar 🛒</button>
+        <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.7rem">
+          <button class="btn" type="button" onclick="agregarDesdeCatalogo(event, ${prod.id}, this)">Agregar</button>
+          <button class="btn" type="button" onclick="verDetalle(${prod.id})">Ver</button>
+        </div>
       `;
-      catalogo.appendChild(card);
+      // abrir detalle con tecla Enter
+      card.addEventListener('keydown', e=>{
+        if(e.key === 'Enter') verDetalle(prod.id);
+      });
+      catalogoEl.appendChild(card);
     });
   }
 
-  // Buscador
-  function filtrarCatalogo() {
-    const query = buscador.value.trim().toLowerCase();
-    if (query === "") {
-      catalogoFiltrado = [...juegos];
-    } else {
-      catalogoFiltrado = juegos.filter(juego =>
-        juego.titulo.toLowerCase().includes(query) ||
-        juego.descripcion.toLowerCase().includes(query)
-      );
-    }
+  // --- Utilidades ---
+  function formatPrecio(num){
+    return num === 0 ? 'Gratis' : `$${Number(num).toFixed(2)}`;
+  }
+  function escapeHtml(str){
+    return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+  }
+
+  // --- Buscador / filtros / orden ---
+  function filtrarCatalogo(){
+    const q = buscador.value.trim().toLowerCase();
+    const cat = filtroCategoria.value;
+    catalogoFiltrado = productos.filter(p=>{
+      const matchQ = q === '' || p.titulo.toLowerCase().includes(q) || p.descripcion.toLowerCase().includes(q) || p.categoria.toLowerCase().includes(q);
+      const matchCat = !cat || p.categoria === cat;
+      return matchQ && matchCat;
+    });
+    ordenarCatalogo(); // aplicar orden tras filtrar
+  }
+
+  function ordenarCatalogo(){
+    const mode = ordenSelect.value;
+    if(mode === 'precio-asc') catalogoFiltrado.sort((a,b)=>a.precio - b.precio);
+    else if(mode === 'precio-desc') catalogoFiltrado.sort((a,b)=>b.precio - a.precio);
+    // relevancia o default mantiene orden original
     mostrarCatalogo();
   }
 
-  function cambiarCantidad(btn, delta) {
-    const input = btn.parentElement.querySelector('input');
-    let val = parseInt(input.value, 10) || 1;
-    val += delta;
-    if (val < 1) val = 1;
-    if (val > 99) val = 99;
-    input.value = val;
-  }
-  function validarCantidad(input) {
-    let val = parseInt(input.value, 10) || 1;
-    if (val < 1) val = 1;
-    if (val > 99) val = 99;
-    input.value = val;
-  }
-
-  function agregarCarritoDesdeCatalogo(e, id, btn) {
-    e.stopPropagation();
-    const card = btn.closest('.juego');
-    const input = card.querySelector('input[type=number]');
-    const cantidad = Math.max(1, parseInt(input.value, 10) || 1);
-    agregarCarrito(id, cantidad);
-    input.value = 1;
-  }
-
-  function verDetalle(id) {
-    const juego = juegos.find(j => j.id === id);
-    catalogo.style.display = "none";
-    carrito.style.display = "none";
-    factura.style.display = "none";
-    detalle.style.display = "block";
-    let videoHTML = "";
-    if (juego.video && juego.video.endsWith('.mp4')) {
-      videoHTML = `<video src="${juego.video}" controls autoplay muted loop></video>`;
-    } else if (juego.video) {
-      videoHTML = `<iframe src="${juego.video}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    }
-    detalle.innerHTML = `
-      <h2>${juego.titulo}</h2>
-      <img src="${juego.imagen}" alt="${juego.titulo}">
-      <div class="precio-sticker">$${juego.precio}</div>
-      <p>${juego.descripcion}</p>
-      ${videoHTML}
-      <div class="cantidad-selector">
-        <button onclick="cambiarCantidad(this, -1)">-</button>
-        <input type="number" value="1" min="1" max="99" onchange="validarCantidad(this)">
-        <button onclick="cambiarCantidad(this, 1)">+</button>
-      </div>
-      <button class="btn" onclick="agregarCarritoDesdeDetalle(event, ${juego.id}, this)">Agregar 🛒</button>
-      <button class="btn" onclick="mostrarCatalogo()">Volver</button>
-    `;
-    setTimeout(() => { window.scrollTo(0, 0); }, 50);
-  }
-
-  function agregarCarritoDesdeDetalle(e, id, btn) {
-    e.stopPropagation();
+  // --- Cantidad en tarjetas ---
+  function cambiarCantidad(btn, delta){
     const input = btn.parentElement.querySelector('input[type=number]');
-    const cantidad = Math.max(1, parseInt(input.value, 10) || 1);
+    let val = parseInt(input.value,10) || 1;
+    val += delta;
+    if(val < 1) val = 1;
+    if(input.max) val = Math.min(val, parseInt(input.max,10));
+    input.value = val;
+  }
+
+  // --- Agregar al carrito (desde catálogo y detalle) ---
+  function agregarDesdeCatalogo(e, id, btn){
+    e.stopPropagation();
+    const card = btn.closest('.card');
+    const input = card.querySelector('input[type=number]');
+    const cantidad = Math.max(1, parseInt(input.value,10) || 1);
     agregarCarrito(id, cantidad);
     input.value = 1;
   }
 
-  function agregarCarrito(id, cantidad) {
-    const juego = juegos.find(j => j.id === id);
-    const idx = carritoItems.findIndex(item => item.id === id);
-    if (idx >= 0) {
-      carritoItems[idx].cantidad += cantidad;
-    } else {
-      carritoItems.push({...juego, cantidad});
-    }
-    guardarCarrito();
-    alert(`${juego.titulo} x${cantidad} agregado al carrito 🛒`);
-    // Ya no te lleva al carrito directo
-  }
-
-  function mostrarCarrito() {
-    catalogo.style.display = "none";
-    detalle.style.display = "none";
-    factura.style.display = "none";
-    carrito.style.display = "block";
-    formCompra.style.display = "none";
-    btnCompra.style.display = "inline-block";
-    listaCarrito.innerHTML = "";
-    let totalCompra = 0;
-    carritoItems.forEach((item, idx) => {
-      const subtotal = item.precio * item.cantidad;
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span>
-          <b>${item.titulo}</b> 
-          <span style="color:#00ffe7;">x${item.cantidad}</span> 
-          <span style="font-family:'Orbitron',Arial;font-size:1.1em;color:#00ffe7;">$${item.precio}</span>
-          <span style="color:#fff;">| Subtotal: $${subtotal.toFixed(2)}</span>
-        </span>
-        <button class="eliminar" onclick="eliminarDelCarrito(${idx})">✖</button>
-      `;
-      listaCarrito.appendChild(li);
-      totalCompra += subtotal;
-    });
-    total.textContent = totalCompra.toFixed(2);
-    if(carritoItems.length === 0) {
-      btnCompra.style.display = "none";
-    }
-  }
-
-  function eliminarDelCarrito(index) {
-    carritoItems.splice(index, 1);
-    guardarCarrito();
-    mostrarCarrito();
-  }
-
-  function volverCatalogo() {
-    mostrarCatalogo();
-  }
-
-  function mostrarFormularioCompra() {
-    if(carritoItems.length === 0) return;
-    btnCompra.style.display = "none";
-    formCompra.style.display = "flex";
-    factura.style.display = "none";
-  }
-
-  function procesarCompra(event) {
-    event.preventDefault();
-    const nombre = document.getElementById("nombre").value.trim();
-    const edad = document.getElementById("edad").value.trim();
-    const celular = document.getElementById("celular").value.trim();
-    const nit = document.getElementById("nit").value.trim();
-    let totalCompra = 0;
-    let productos = '';
-    carritoItems.forEach(item => {
-      const subtotal = item.precio * item.cantidad;
-      productos += `<li>${item.titulo} x${item.cantidad} - $${subtotal.toFixed(2)}</li>`;
-      totalCompra += subtotal;
-    });
-    factura.innerHTML = `
-      <h2>Factura de compra</h2>
-      <div class="resumen">
-        <strong>Nombre:</strong> ${nombre} <br>
-        <strong>Edad:</strong> ${edad} <br>
-        <strong>Celular:</strong> ${celular} <br>
-        ${nit ? `<strong>NIT:</strong> ${nit} <br>` : ""}
-        <br>
-        <strong>Productos:</strong>
-        <ul>${productos}</ul>
-        <strong>Total pagado:</strong> $${totalCompra.toFixed(2)}
+  function verDetalle(id){
+    const prod = productos.find(p=>p.id===id);
+    if(!prod) return;
+    catalogoEl.style.display = 'none';
+    carritoEl.style.display = 'none';
+    facturaEl.style.display = 'none';
+    detalleEl.style.display = 'block';
+    detalleEl.innerHTML = `
+      <h2 style="color:var(--accent)">${escapeHtml(prod.titulo)}</h2>
+      <img src="${prod.imagen}" alt="${escapeHtml(prod.titulo)}" style="max-width:360px;display:block;margin:0.6rem auto;border-radius:8px">
+      <div class="precio-sticker">${formatPrecio(prod.precio)}</div>
+      <p style="color:#cfe8ff">${escapeHtml(prod.descripcion)}</p>
+      <p style="color:#bcd">Categoría: ${escapeHtml(prod.categoria)} • SKU ${escapeHtml(prod.sku)} • Stock: ${prod.stock}</p>
+      <div class="cantidad-selector">
+        <button class="small-btn" type="button" onclick="cambiarCantidad(this,-1)">-</button>
+        <input type="number" value="1" min="1" max="${prod.stock}">
+        <button class="small-btn" type="button" onclick="cambiarCantidad(this,1)">+</button>
       </div>
-      <button class="btn" onclick="finalizarCompra()">Finalizar</button>
+      <div style="display:flex;gap:.6rem;justify-content:center;margin-top:.8rem">
+        <button class="btn" type="button" onclick="agregarDesdeDetalle(event, ${prod.id}, this)">Agregar al carrito</button>
+        <button class="btn" type="button" onclick="mostrarCatalogo()">Volver</button>
+      </div>
     `;
-    factura.style.display = "block";
-    carrito.style.display = "none";
+    setTimeout(()=>window.scrollTo(0,0),50);
+  }
+
+  function agregarDesdeDetalle(e, id, btn){
+    e.stopPropagation();
+    const input = btn.parentElement.parentElement.querySelector('input[type=number]');
+    const cantidad = Math.max(1, parseInt(input.value,10) || 1);
+    agregarCarrito(id, cantidad);
+    input.value = 1;
+  }
+
+  function agregarCarrito(id, cantidad){
+    const prod = productos.find(p=>p.id===id);
+    if(!prod) return;
+    const idx = carritoItems.findIndex(it=>it.id===id);
+    if(idx >= 0){
+      carritoItems[idx].cantidad = Math.min(prod.stock, carritoItems[idx].cantidad + cantidad);
+    } else {
+      carritoItems.push({ id:prod.id, titulo:prod.titulo, precio:prod.precio, cantidad: Math.min(cantidad, prod.stock) });
+    }
+    guardarCarrito();
+    mostrarMensaje(`${prod.titulo} x${cantidad} agregado al carrito`);
+  }
+
+  // --- Carrito: mostrar / actualizar / eliminar ---
+  function mostrarCarrito(){
+    catalogoEl.style.display = 'none';
+    detalleEl.style.display = 'none';
+    facturaEl.style.display = 'none';
+    carritoEl.style.display = 'block';
+    renderCarrito();
+  }
+
+  function renderCarrito(){
+    listaCarritoEl.innerHTML = '';
+    let total = 0;
+    carritoItems.forEach((item, idx)=>{
+      const subtotal = item.precio * item.cantidad;
+      total += subtotal;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <div style="flex:1">
+          <div style="font-weight:700">${escapeHtml(item.titulo)}</div>
+          <div style="color:#bcd;font-size:.9rem">${formatPrecio(item.precio)} • Subtotal: ${formatPrecio(subtotal)}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.5rem">
+          <input aria-label="Cantidad producto" type="number" min="1" value="${item.cantidad}" style="width:3rem;padding:.25rem;border-radius:6px;background:#20283a;color:#fff;border:1px solid var(--muted)" onchange="actualizarCantidad(${idx}, this.value)">
+          <button class="eliminar" onclick="eliminarDelCarrito(${idx})">✖</button>
+        </div>
+      `;
+      listaCarritoEl.appendChild(li);
+    });
+    totalEl.textContent = Number(total).toFixed(2);
+    document.getElementById('btnCompra').style.display = carritoItems.length ? 'inline-block' : 'none';
+  }
+
+  function actualizarCantidad(index, valor){
+    let val = parseInt(valor,10) || 1;
+    if(val < 1) val = 1;
+    carritoItems[index].cantidad = val;
+    guardarCarrito();
+    renderCarrito();
+  }
+
+  function eliminarDelCarrito(index){
+    carritoItems.splice(index,1);
+    guardarCarrito();
+    renderCarrito();
+  }
+
+  function guardarCarrito(){
+    localStorage.setItem('carrito', JSON.stringify(carritoItems));
+  }
+
+  // --- Proceso de compra simplificado (simulación) ---
+  function mostrarFormularioCompra(){
+    if(carritoItems.length === 0) return mostrarMensaje('El carrito está vacío', true);
+    document.getElementById('formCompra').style.display = 'block';
+  }
+
+  function procesarCompra(e){
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const celular = document.getElementById('celular').value.trim();
+    if(!nombre || !email || !celular) return mostrarMensaje('Completa los datos requeridos', true);
+    // Generar "factura"
+    let total = 0;
+    let itemsHtml = '';
+    carritoItems.forEach(it=>{
+      const subtotal = it.precio * it.cantidad;
+      total += subtotal;
+      itemsHtml += `<li>${escapeHtml(it.titulo)} x${it.cantidad} - ${formatPrecio(subtotal)}</li>`;
+    });
+    facturaEl.innerHTML = `
+      <h2 style="color:var(--accent)">Factura</h2>
+      <div style="background:#0e1622;padding:1rem;border-radius:8px;margin-top:.6rem">
+        <strong>Nombre:</strong> ${escapeHtml(nombre)} <br>
+        <strong>Email:</strong> ${escapeHtml(email)} <br>
+        <strong>Celular:</strong> ${escapeHtml(celular)} <br><br>
+        <strong>Productos:</strong>
+        <ul>${itemsHtml}</ul>
+        <strong>Total pagado:</strong> ${formatPrecio(total)}
+      </div>
+      <div style="margin-top:.8rem;display:flex;gap:.6rem">
+        <button class="btn" type="button" onclick="finalizarCompra()">Finalizar</button>
+        <button class="btn" type="button" onclick="imprimirFactura()">Imprimir</button>
+      </div>
+    `;
+    facturaEl.style.display = 'block';
+    carritoEl.style.display = 'none';
     carritoItems = [];
     guardarCarrito();
-    formCompra.reset();
-    formCompra.style.display = "none";
+    document.getElementById('formCompra').reset();
+    document.getElementById('formCompra').style.display = 'none';
+    mostrarMensaje('Compra procesada con éxito');
   }
 
-  function finalizarCompra() {
-    factura.style.display = "none";
+  function finalizarCompra(){
+    facturaEl.style.display = 'none';
     mostrarCatalogo();
   }
+  function imprimirFactura(){
+    window.print();
+  }
 
-  // Inicialización
+  // --- UI mensajes ---
+  let msgTimeout = null;
+  function mostrarMensaje(text, error = false){
+    mensaje.style.display = 'block';
+    mensaje.style.background = error ? '#ef5350' : 'linear-gradient(90deg,var(--success),#0b7f4b)';
+    mensaje.textContent = text;
+    if(msgTimeout) clearTimeout(msgTimeout);
+    msgTimeout = setTimeout(()=>{ mensaje.style.display = 'none'; }, 3000);
+  }
+
+  // --- Inicial --- 
+  initFiltros();
   mostrarCatalogo();
 </script>
 </body>
