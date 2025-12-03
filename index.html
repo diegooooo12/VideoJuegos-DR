@@ -509,5 +509,40 @@
   initFiltros();
   mostrarCatalogo();
 </script>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } 
+    from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBoGgWvZvei2yBcIz0xvaudrCRtfXW4yRw",
+    authDomain: "d-store-4ef98.firebaseapp.com",
+    projectId: "d-store-4ef98",
+    storageBucket: "d-store-4ef98.firebasestorage.app",
+    messagingSenderId: "581887779684",
+    appId: "1:581887779684:web:96be0a0f1d67b777b39071",
+    measurementId: "G-D4674T98H3"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // PROBAR:
+  // agregarProducto();
+  // mostrarProductos();
+
+  async function agregarProducto() {
+    await addDoc(collection(db, "productos"), {
+      nombre: "Prueba",
+      precio: 10
+    });
+    alert("Producto guardado!");
+  }
+
+  async function mostrarProductos() {
+    const snap = await getDocs(collection(db, "productos"));
+    snap.forEach(doc => console.log(doc.data()));
+  }
+</script>
 </body>
 </html>
